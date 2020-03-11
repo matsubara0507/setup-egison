@@ -1,0 +1,10 @@
+name: 'Setup Egison environment'
+description: 'Setup a Egison environment and add it to the PATH'
+author: 'MATSUBARA Nobutada'
+inputs:
+  egison-version:
+    description: 'Exact version of ghc to use.'
+    default: '3.10.3'
+runs:
+  using: 'node12'
+  main: 'lib/setup-egison.js'
