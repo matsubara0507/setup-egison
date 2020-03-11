@@ -8,7 +8,8 @@
     "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
-    "action": "node ./lib/setup-egison.js"
+    "action": "node ./lib/setup-egison.js",
+    "prune": "npm prune --production && git add --force node_modules && git commit -m \"Husky commit correct node modules\""
   },
   "repository": {
     "type": "git",
@@ -37,8 +38,7 @@
   "husky": {
     "skipCI": true,
     "hooks": {
-      "pre-commit": "npm run build && npm run format",
-      "post-commit": "npm install --production && git add -fu node_modules && git commit -m \"Husky commit correct node modules\""
+      "pre-commit": "npm run build && npm run format"
     }
   }
 }
