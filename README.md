@@ -1,7 +1,7 @@
 # setup-egison
 
 <p align="left">
-  <a href="https://github.com/matsubara0507/setup-egison"><img alt="GitHub Actions status" src="https://github.com/matsubara0507/setup-egison/workflows/Main%20workflow/badge.svg"></a>
+  <a href="https://github.com/matsubara0507/setup-egison"><img alt="GitHub Actions status" src="https://github.com/matsubara0507/setup-egison/workflows/Sample/badge.svg"></a>
 </p>
 
 This action sets up a [Egison](https://www.egison.org) environment for use in actions by:
