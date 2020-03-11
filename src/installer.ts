@@ -21,9 +21,12 @@ export function findEgisonVersion(baseInstallDir: string, version: string) {
   }
 }
 
-function _findEgisonVersionForLinux(baseInstallDir: string, version: string) {
+async function _findEgisonVersionForLinux(
+  baseInstallDir: string,
+  version: string
+) {
   var tmpOutput = baseInstallDir + '/egison.deb';
-  exec.exec(`wget -o ${tmpOutput} https://git.io/egison.x86_64.deb`);
-  exec.exec(`sudo dpkg -i ${tmpOutput}`);
-  io.rmRF(tmpOutput);
+  await exec.exec(`wget -o ${tmpOutput} https://git.io/egison.x86_64.deb`);
+  await exec.exec(`sudo dpkg -i ${tmpOutput}`);
+  await io.rmRF(tmpOutput);
 }
