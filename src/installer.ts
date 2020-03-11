@@ -25,7 +25,8 @@ async function _findEgisonVersionForLinux(
   version: string
 ) {
   var tmpOutput = baseInstallDir + '/egison.deb';
-  var debUrl = `https://raw.githubusercontent.com/egison/egison-package-builder/${version}/packages/egison.x86_64.deb`;
+  var revision = _packageRevisionOf(version);
+  var debUrl = `https://raw.githubusercontent.com/egison/egison-package-builder/${revision}/packages/egison.x86_64.deb`;
   await exec.exec(`wget -O ${tmpOutput} ${debUrl}`);
   if (fs.existsSync(tmpOutput)) {
     await exec.exec(`sudo dpkg -i ${tmpOutput}`);
@@ -33,4 +34,15 @@ async function _findEgisonVersionForLinux(
     throw new Error(`cannot download egison ${version}`);
   }
   await io.rmRF(tmpOutput);
+}
+
+function _packageRevisionOf(version: string) {
+  switch (version) {
+    case '3.10.3':
+      return '744e59bf2ac0828ed45ed71ff81cf29c2c2f0fca';
+    case '3.9.4':
+      return '3418c471b9a9649dc1e46cd2e23c09b0c04da7d9';
+    default:
+      throw new Error(`unsupported egison ${version}`);
+  }
 }
