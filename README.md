@@ -7,7 +7,7 @@
 This action sets up a [Egison](https://www.egison.org) environment for use in actions by:
 
 - optionally installing a version of egison and adding to PATH.
-- Note that this action only support linux OS and [egison versions released by egison-package-builder](https://github.com/egison/egison-package-builder/releases).
+- Note that this action only support linux OS.
 
 ## Usage
 
@@ -43,6 +43,11 @@ jobs:
           egison-version: ${{ matrix.egison }}
       - run: egison --version
 ```
+
+Supported versions:
+
+- `3.10.3`
+- `3.9.4`
 
 ## License
 
