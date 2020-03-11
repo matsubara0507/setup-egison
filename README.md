@@ -31,8 +31,8 @@ jobs:
   run:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        fail-fast: false
         egison: [ '3.10.3', '3.9.4' ]
     name: Egison ${{ matrix.egison }} sample
     steps:
