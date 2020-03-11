@@ -1,0 +1,44 @@
+{
+  "name": "setup-egison",
+  "version": "0.1.0",
+  "private": true,
+  "description": "setup egison action",
+  "main": "lib/setup-egison.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "action": "node ./lib/setup-egison.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matsubara0507/setup-egison.git"
+  },
+  "keywords": [
+    "actions",
+    "egison",
+    "setup"
+  ],
+  "author": "MATSUBARA Nobutada",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "1.2.0",
+    "@actions/exec": "1.0.1",
+    "@actions/io": "1.0.1",
+    "semver": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.5",
+    "@types/semver": "^6.0.2",
+    "husky": "^2.3.0",
+    "prettier": "^1.17.1",
+    "typescript": "^3.6.3"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "npm run build && npm run format",
+      "post-commit": "npm install --production && git add -fu node_modules && git commit -m \"Husky commit correct node modules\""
+    }
+  }
+}
