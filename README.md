@@ -18,7 +18,7 @@ Basic:
 ``` yaml
 steps:
 - uses: actions/checkout@master
-- uses: actions/setup-egison@master
+- uses: matsubara0507/setup-egison@master
   with:
     egison-version: '3.10.3'
 - run: egison --version
@@ -32,12 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        fail-fast: false
         egison: [ '3.10.3', '3.9.4' ]
     name: Egison ${{ matrix.egison }} sample
     steps:
       - uses: actions/checkout@master
       - name: Setup Egison
-        uses: actions/setup-egison@master
+        uses: matsubara0507/setup-egison@master
         with:
           egison-version: ${{ matrix.egison }}
       - run: egison --version

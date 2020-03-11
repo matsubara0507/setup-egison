@@ -8,12 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        fail-fast: false
         egison: [ '3.10.3', '3.9.4' ]
     name: Egison ${{ matrix.egison }} sample
     steps:
       - uses: actions/checkout@master
       - name: Setup Egison
-        uses: actions/setup-egison@master
+        uses: matsubara0507/setup-egison@master
         with:
           egison-version: ${{ matrix.egison }}
       - run: egison --version
