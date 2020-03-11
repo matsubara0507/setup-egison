@@ -26,7 +26,7 @@ async function _findEgisonVersionForLinux(
   version: string
 ) {
   var tmpOutput = baseInstallDir + '/egison.deb';
-  await exec.exec(`wget -o ${tmpOutput} https://git.io/egison.x86_64.deb`);
+  await exec.exec(`wget -O ${tmpOutput} https://git.io/egison.x86_64.deb`);
   await exec.exec(`sudo dpkg -i ${tmpOutput}`);
   await io.rmRF(tmpOutput);
 }
