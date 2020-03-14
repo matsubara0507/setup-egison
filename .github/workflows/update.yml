@@ -14,11 +14,11 @@ jobs:
 
     - name: Set default version
       id: default
-      run: echo "::set-output name=version::$(sed -e s/export\ const\ defaultVersion\ =\ //g src/default.ts | sed -e s/\;//g | sed -e s/\'/\"/g)"
+      run: echo "::set-output name=version::$(sed -e s/export\ const\ defaultVersion\ =\ //g src/default.ts | sed -e s/\;//g | sed -e s/\'//g)"
 
     - name: Set latest version
       id: latest
-      run: echo "::set-output name=version::$(curl -s https://api.github.com/repos/egison/egison-package-builder/releases/latest | jq .name)"
+      run: echo "::set-output name=version::$(curl -s https://api.github.com/repos/egison/egison-package-builder/releases/latest | jq .name | sed -e s/\"//g)"
 
     - name: Build commit
       id: commit
@@ -50,6 +50,7 @@ jobs:
           - [ ] update documents (README, actions.yml)
           - [ ] update sample workflow
       run: |
+        echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"pr_body\",\"draft\":true}"
         curl -X POST\
           -H "Authorization: token $token"\
           -d "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"pr_body\",\"draft\":true}"\
