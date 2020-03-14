@@ -44,10 +44,10 @@ jobs:
         pr_head: ${{ steps.commit.outputs.branch }}
         pr_base: master
         pr_body: >
-          - [x] update default version in src\\n
-          - [ ] add new version revision to src\\n
-          - [ ] build TypeScript\\n
-          - [ ] update documents (README, actions.yml)\\n
+          - [x] update default version in src\n
+          - [ ] add new version revision to src\n
+          - [ ] build TypeScript\n
+          - [ ] update documents (README, actions.yml)\n
           - [ ] update sample workflow
       run: |
         echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"
