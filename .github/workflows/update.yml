@@ -14,7 +14,7 @@ jobs:
 
     - name: Set default version
       id: default
-      run: echo "::set-output name=version::$(sed -e s/export\ const\ defaultVersion\ =\ //g hoge.ts | sed -e s/\;//g | sed -e s/\'/\"/g)"
+      run: echo "::set-output name=version::$(sed -e s/export\ const\ defaultVersion\ =\ //g src/default.ts | sed -e s/\;//g | sed -e s/\'/\"/g)"
 
     - name: Set latest version
       id: latest
@@ -27,6 +27,8 @@ jobs:
         NEW_VERSION: ${{ steps.latest.outputs.version }}
       run: |
         echo "export const defaultVersion = \"$NEW_VERSION\"" > src/default.ts
+        git config --global user.email "bot@example.com"
+        git config --global user.name "GitHub Actions Bot"
         git add src/default.ts
         git commit -m "Feat: update default egison version"
         git checkout -b egison-version-$NEW_VERSION
