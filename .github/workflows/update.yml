@@ -50,8 +50,8 @@ jobs:
           - [ ] update documents (README, actions.yml)
           - [ ] update sample workflow
       run: |
-        echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"pr_body\",\"draft\":true}"
+        echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"
         curl -X POST\
           -H "Authorization: token $token"\
-          -d "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"pr_body\",\"draft\":true}"\
+          -d "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"\
           https://api.github.com/repos/$repository/pulls
