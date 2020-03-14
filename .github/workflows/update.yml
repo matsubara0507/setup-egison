@@ -1,8 +1,7 @@
 name: Update if release new version
 on:
-  # schedule:
-  # - cron:  '0 10 * * *'
-  pull_request: null
+  schedule:
+  - cron:  '0 10 * * *'
 
 jobs:
   build:
