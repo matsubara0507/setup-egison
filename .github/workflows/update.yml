@@ -43,12 +43,12 @@ jobs:
         pr_title: Release new egison version ${{ steps.latest.outputs.version }}
         pr_head: ${{ steps.commit.outputs.branch }}
         pr_base: master
-        pr_body: |
-          - [x] update default version in src
-          - [ ] add new version revision to src
-          - [ ] build TypeScript
-          - [ ] update documents (README, actions.yml)
-          - [ ] update sample workflow
+        pr_body: "
+          - [x] update default version in src\n
+          - [ ] add new version revision to src\n
+          - [ ] build TypeScript\n
+          - [ ] update documents (README, actions.yml)\n
+          - [ ] update sample workflow"
       run: |
         echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"
         curl -X POST\
