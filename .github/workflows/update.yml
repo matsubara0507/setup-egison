@@ -1,0 +1,56 @@
+name: Update if release new version
+on:
+  schedule:
+  - cron:  '0 10 * * *'
+
+jobs:
+  build:
+    name: Build new version commit
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set default version
+      id: default
+      run: echo "::set-output name=version::$(sed -e s/export\ const\ defaultVersion\ =\ //g src/default.ts | sed -e s/\;//g | sed -e s/\'//g)"
+
+    - name: Set latest version
+      id: latest
+      run: echo "::set-output name=version::$(curl -s https://api.github.com/repos/egison/egison-package-builder/releases/latest | jq .name | sed -e s/\"//g)"
+
+    - name: Build commit
+      id: commit
+      if: ${{ steps.latest.outputs.version != steps.default.outputs.version }}
+      env:
+        NEW_VERSION: ${{ steps.latest.outputs.version }}
+      run: |
+        echo "export const defaultVersion = \"$NEW_VERSION\"" > src/default.ts
+        git config --global user.email "bot@example.com"
+        git config --global user.name "GitHub Actions Bot"
+        git add src/default.ts
+        git commit -m "Feat: update default egison version"
+        git checkout -b egison-version-$NEW_VERSION
+        git push origin egison-version-$NEW_VERSION
+        echo "::set-output name=branch::egison-version-$NEW_VERSION"
+
+    - name: Create Pull Request
+      if: ${{ steps.commit.outputs.branch }}
+      env:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}
+        pr_title: Release new egison version ${{ steps.latest.outputs.version }}
+        pr_head: ${{ steps.commit.outputs.branch }}
+        pr_base: master
+        pr_body: >-
+         - [x] update default version in src\n
+         - [ ] add new version revision to src\n
+         - [ ] build TypeScript\n
+         - [ ] update documents (README, actions.yml)\n
+         - [ ] update sample workflow
+      run: |
+        echo "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"
+        curl -X POST\
+          -H "Authorization: token $token"\
+          -d "{\"title\":\"$pr_title\",\"head\":\"$pr_head\",\"base\":\"$pr_base\",\"body\":\"$pr_body\",\"draft\":true}"\
+          https://api.github.com/repos/$repository/pulls
