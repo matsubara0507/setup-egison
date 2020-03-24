@@ -43,5 +43,5 @@ jobs:
          - [ ] update sample workflow
         labels: New Egison Version
         branch: egison-version-${{ steps.latest.outputs.version }}
-        base: master
+        base: use-cpr-in-update-workflow
         branch-suffix: random
