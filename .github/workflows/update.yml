@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        ref: use-cpr-in-update-workflow
 
     - name: Set default version
       id: default
