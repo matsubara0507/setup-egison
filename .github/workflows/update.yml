@@ -26,7 +26,7 @@ jobs:
       if: ${{ steps.latest.outputs.version != steps.default.outputs.version }}
       env:
         NEW_VERSION: ${{ steps.latest.outputs.version }}
-      run: echo "export const defaultVersion = \"$NEW_VERSION\"" > src/default.ts
+      run: echo "export const defaultVersion = '$NEW_VERSION';" > src/default.ts
 
     - name: Create Pull Request
       if: ${{ steps.latest.outputs.version != steps.default.outputs.version }}
