@@ -2,7 +2,6 @@ name: Update if release new version
 on:
   schedule:
   - cron:  '0 10 * * *'
-  pull_request: null
 
 jobs:
   build:
@@ -12,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: use-cpr-in-update-workflow
+        ref: master
 
     - name: Set default version
       id: default
@@ -43,5 +42,5 @@ jobs:
          - [ ] update sample workflow
         labels: New Egison Version
         branch: egison-version-${{ steps.latest.outputs.version }}
-        base: use-cpr-in-update-workflow
+        base: master
         branch-suffix: random
