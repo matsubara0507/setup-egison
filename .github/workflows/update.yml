@@ -43,4 +43,3 @@ jobs:
         labels: New Egison Version
         branch: egison-version-${{ steps.latest.outputs.version }}
         base: master
-        branch-suffix: random
