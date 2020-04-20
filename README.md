@@ -20,7 +20,7 @@ steps:
 - uses: actions/checkout@master
 - uses: matsubara0507/setup-egison@master
   with:
-    egison-version: '3.10.3'
+    egison-version: '4.0.0'
 - run: egison --version
 ```
 
@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        egison: [ '3.10.3', '3.9.4' ]
+        egison: [ '4.0.0', '3.10.3' ]
     name: Egison ${{ matrix.egison }} sample
     steps:
       - uses: actions/checkout@master
@@ -46,6 +46,7 @@ jobs:
 
 Supported versions:
 
+- `4.0.0`
 - `3.10.3`
 - `3.9.4`
 
