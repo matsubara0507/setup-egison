@@ -35,6 +35,7 @@ jobs:
         commit-message: 'Feat: update default egison version'
         title: Release new egison version ${{ steps.latest.outputs.version }}
         body: |
+         @matsubara0507
          - [x] update default version in src
          - [ ] add new version revision to src
          - [ ] build TypeScript
