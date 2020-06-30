@@ -38,6 +38,8 @@ async function _findEgisonVersionForLinux(
 
 function _packageRevisionOf(version: string) {
   switch (version) {
+    case '4.0.3':
+      return '2a39d25c446b494d6abe50b824191d5da3175cc7';
     case '4.0.0':
       return '09b9229017513aefbec18eb2e11c2ba6717711bb';
     case '3.10.3':
