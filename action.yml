@@ -4,7 +4,7 @@ author: 'MATSUBARA Nobutada'
 inputs:
   egison-version:
     description: 'Exact version of ghc to use.'
-    default: '3.10.3'
+    default: '4.1.2'
 runs:
   using: 'node12'
   main: 'lib/setup-egison.js'
