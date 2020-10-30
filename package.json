@@ -1,6 +1,6 @@
 {
   "name": "setup-egison",
-  "version": "1.0.1",
+  "version": "2.1.0",
   "private": true,
   "description": "setup egison action",
   "main": "lib/setup-egison.js",
@@ -23,17 +23,17 @@
   "author": "MATSUBARA Nobutada",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.2.0",
-    "@actions/exec": "1.0.1",
-    "@actions/io": "1.0.1",
-    "semver": "^6.1.1"
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.0.2",
+    "semver": "^7.3.2"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
-    "@types/semver": "^6.0.2",
+    "@types/node": "^12.19.2",
+    "@types/semver": "^6.2.2",
     "husky": "^2.3.0",
     "prettier": "^1.17.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.9.7"
   },
   "husky": {
     "skipCI": true,
