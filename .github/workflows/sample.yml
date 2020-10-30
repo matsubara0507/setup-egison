@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        egison: [ '4.1.2', '4.0.3', '3.10.3 ]
+        egison: [ '4.1.2', '4.0.3', '3.10.3' ]
     name: Egison ${{ matrix.egison }} sample
     steps:
       - uses: actions/checkout@master
