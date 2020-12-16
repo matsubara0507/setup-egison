@@ -29,7 +29,7 @@ jobs:
 
     - name: Create Pull Request
       if: ${{ steps.latest.outputs.version != steps.default.outputs.version }}
-      uses: peter-evans/create-pull-request@v2
+      uses: peter-evans/create-pull-request@v3.5.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'Feat: update default egison version'
@@ -44,3 +44,4 @@ jobs:
         labels: New Egison Version
         branch: egison-version-${{ steps.latest.outputs.version }}
         base: master
+        draft: true 
